@@ -9,9 +9,9 @@ DAYS = HOURS * 24
 class Tamagotchi:
     def __init__(self):
 
-        self.name = 'None'
-        self.animal = 'None'
-        self.folder = 'None'
+        self.name = None
+        self.animal = None
+        self.folder = None
 
         self.hungry = {'att':False, 'wait':3 * HOURS, 'file':'hungry.pkl', 'type':'food'}
         self.tired = {'att':False, 'wait':6 * HOURS, 'file':'tired.pkl', 'type':'sleep'}
