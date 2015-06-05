@@ -90,18 +90,41 @@ class TamaWindow:
             listanimal.insert(END, animal[:-4])
 
     def display_pet(self):
-        for widget in self.active_widgets:
-            widget.destroy()
-        # pdb.set_trace()
+        self.destroy_widgets()
+        
+        self.master.title = self.pet.name
+        
         img = Image.open('animals/' + self.pet.animal)
         image = ImageTk.PhotoImage(img)
-        print(image)
-        # canvas = Canvas(self.master, width=50, height=50)
-        # canvas.pack()
-        # canvas.create_image(50,50,image=image)
         img_label = Label(self.master, image=image)
-        self.active_widgets = [img_label]
-        img_label.pack()
+        
+        health_label = Label(self.master, text='Health: ')
+        health_canvas = Canvas(self.master, width=10, height=100)
+        health_canvas.create_rectangle(self.pet.health, 0, 0, 10, outline='#f50', fill='#f50') # I believe it's top, left, bottom, right
+        happiness_label = Label(self.master, text='Happiness: ')
+        happiness_canvas = Canvas(self.master, width=10, height=100)
+        happiness_canvas.create_rectangle(self.pet.happiness, 0, 0, 10, outline='#f50', fill='#f50')
+        
+        img_label.grid(row=0, columnspan=6)
+        health_label.grid(row=1, column=0)
+        health_canvas.grid(row=1, column=1)
+        happiness_label.grid(row=1, column=2)
+        happiness_canvas.grid(row=1, column=3)
+        
+        self.active_widgets = [img_label, health_label, health_canvas, happiness_label, happiness_canvas]
+        
+        for i, interaction in enumerate(self.pet.interactions):
+            m_button = Menubutton(self.master, text=interation)
+            # m_button.grid() >> I may need to do this before anything else...
+            m_button.menu = Menu(m_button, tearoff=0) # Not sure what tearoff means...
+            for option in interation:
+                # var = StringVar() >> Maybe need this as well // or command=lambda x: self.pet.interact(x)
+                m_button.menu.add_checkbutton(label=option[0]) # variable=var
+            self.active_widgets.append(m_button.grid)
+            m_button.grid(row=2, column=i)
+        
+        
+        img_label.grid()
 
     def make_pet(self, name, animal):
         if name in pickle.load(open('saves.pkl', 'rb')):
