@@ -3,8 +3,8 @@ import os
 import pickle
 import pdb
 
-MINUTES = 1
-HOURS = MINUTES * 60
+MINUTES = 10
+HOURS = MINUTES * 10
 DAYS = HOURS * 24
 
 class Tamagotchi:
@@ -26,26 +26,26 @@ class Tamagotchi:
                         'type':'Drink', 'timestring': None}
 
         self.interactions = {
-            # Action, Time, Health, Happiness
-            'Eat':[['Cheeseburger', 3 * HOURS, -1, 1],
-                    ['Salad', 90 * MINUTES, 1, -1],
-                    ['Pizza', int(3.5 * HOURS), -2, 2],
-                    ['Celery', 1 * HOURS, 2, -2]
+            # Action, Wait_Time, Health, Happiness, Action_Time
+            'Eat':[['Cheeseburger', 3 * HOURS, -1, 1, 20],
+                    ['Salad', 90 * MINUTES, 1, -1, 20],
+                    ['Pizza', int(3.5 * HOURS), -2, 2, 30],
+                    ['Celery', 30 * MINUTES, 2, -2, 10]
                     ],
-            'Drink':[['Water', 2 * HOURS, 0, 0],
-                      ['Soda', 1 * HOURS, -1, 1],
-                      ['Coffee', 90 * MINUTES, 0, 1],
-                      ['Beer', 30 * MINUTES, -1, 2]
+            'Drink':[['Water', 2 * HOURS, 0, 0, 10],
+                      ['Soda', 1 * HOURS, -1, 1, 10],
+                      ['Coffee', 90 * MINUTES, 0, 1, 10],
+                      ['Beer', 30 * MINUTES, -1, 2, 10]
                     ],
-            'Love':[['Hug', 2 * HOURS, 0, 3],
-                       ['Pet', 30 * MINUTES, 0, 1],
+            'Love':[['Hug', 2 * HOURS, 0, 3, 20],
+                       ['Pet', 30 * MINUTES, 0, 1, 5],
                        ],
-            'Play':[['Basketball', 4 * HOURS, 3, 3],
-                    ['Frisbee', 3 * HOURS, 2, 4],
-                    ['Watch TV', 1 * HOURS, -1, 3]
+            'Play':[['Basketball', 4 * HOURS, 3, 3, 45],
+                    ['Frisbee', 3 * HOURS, 2, 4, 45],
+                    ['Watch TV', 1 * HOURS, -1, 3, 45]
                     ],
-            'Sleep':[['Sleep', 12 * HOURS, 2, 2],
-                     ['Nap', 4 * HOURS, 0, 3]]
+            'Sleep':[['Sleep', 12 * HOURS, 2, 2, 3 * HOURS],
+                     ['Nap', 4 * HOURS, 0, 3, 30 * MINUTES]]
         }
 
         # Wellness
@@ -120,23 +120,6 @@ class Tamagotchi:
 
             pickle.dump(self.health, open(folder + health, 'wb'))
             pickle.dump(self.happiness, open(folder + happy, 'wb'))
-
-
-    def update(self):
-        '''Called every second to update the Pet's att
-        ----> This is now Redundant!?! <----
-        '''
-        for con in self.conditions:
-            now = int(time.time())
-            if os.path.exists(self.folder + con['file']):
-                old_time = pickle.load(open(self.folder + con['file'], 'rb'))
-                if now - old_time > con['wait']:
-                    con['att'] = True
-                else:
-                    con['att'] = False
-            else:
-                con['att'] = False
-                pickle.dump(0, open(self.folder + con['file'], 'wb'))
 
 
 if __name__ == '__main__':

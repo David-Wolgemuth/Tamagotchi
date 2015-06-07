@@ -65,7 +65,6 @@ class TamaWindow:
         self.pet.animal = pk.load(open(folder + 'animal_type.pkl', 'rb'))
         self.pet.happiness = pk.load(open(folder + 'happiness.pkl', 'rb'))
         self.pet.health = pk.load(open(folder + 'health.pkl', 'rb'))
-        self.pet.update()
         self.display_pet()
 
     def interaction(self, interaction, option):
@@ -82,6 +81,12 @@ class TamaWindow:
             x = Button(text=message, command=lambda: x.destroy())
             x.grid(columnspan=6)
             self.active_widgets.append(x)
+
+    def interacting_bar(self, interaction):
+        '''Make a Loading Bar? (maybe a cancel button)? to signify that you are
+        interacting with the pet and cannot do anything at the moment... Possibly
+        even a new window demonstrating what's happening?...
+        '''
 
     def new_pet_window(self):
         '''Player creates a new pet, window has an Entry box and List
@@ -205,10 +210,9 @@ class TamaWindow:
             self.active_widgets.append(widget)
 
     def update_pet(self):
-        '''Every second, updates the times related to pet intaractions
+        '''Every second, updates the times related to pet interactions
          '''
         if self.pet.health:
-            self.pet.update()
             self.display_seconds()
         self.master.after(1000, self.update_pet)
 
