@@ -18,12 +18,13 @@ class TamaWindow:
         self.health_bar = None
         self.happiness_bar = None
 
-        if os.path.exists('saves.pkl'):
-            self.pet_saves = pk.load(open('saves.pkl', 'rb'))
+        if os.path.exists('saves/saves.pkl'):
+            self.pet_saves = pk.load(open('saves/saves.pkl', 'rb'))
             self.welcome_screen()
         else:
+            os.mkdir('saves')
             self.pet_saves = []
-            pk.dump(self.pet_saves, open('saves.pkl', 'wb'))
+            pk.dump(self.pet_saves, open('saves/saves.pkl', 'wb'))
             self.new_pet_window()
 
     def destroy_widgets(self):
@@ -36,7 +37,7 @@ class TamaWindow:
         new = Button(self.master, text='Make New Pet',
                                 command=self.new_pet_window)
         old = Listbox(self.master)
-        load = Button(self.master, text='Load Pet', command=lambda:
+        load = Button(self.master, text='Load', command=lambda:
                         self.select_pet(old.get(old.curselection()[0])))
 
         self.destroy_widgets()
@@ -45,7 +46,7 @@ class TamaWindow:
         old.grid(row=1, column=0, columnspan=2)
         self.active_widgets = [new, old, load]
 
-        for name in pk.load(open('saves.pkl', 'rb')):
+        for name in pk.load(open('saves/saves.pkl', 'rb')):
             old.insert(END, name)
 
     def select_pet(self, name, animal=None):
@@ -54,17 +55,21 @@ class TamaWindow:
         '''
         self.pet = Tamagotchi()
         self.pet.name = name
-        self.pet.folder = folder = name + '_saves/'
+        self.pet.folder = 'saves/' + name + '_saves/'
+
+        folder = self.pet.folder
+        hhfolder = folder + 'hhbars/'
 
         if  not os.path.exists(folder):
             os.mkdir(folder)
             pk.dump(animal, open(folder + 'animal_type.pkl', 'wb'))
-            pk.dump(50, open(folder + 'happiness.pkl', 'wb'))
-            pk.dump(50, open(folder + 'health.pkl', 'wb'))
+            os.mkdir(hhfolder)
+            pk.dump(50, open(hhfolder + 'happiness.pkl', 'wb'))
+            pk.dump(50, open(hhfolder + 'health.pkl', 'wb'))
 
         self.pet.animal = pk.load(open(folder + 'animal_type.pkl', 'rb'))
-        self.pet.happiness = pk.load(open(folder + 'happiness.pkl', 'rb'))
-        self.pet.health = pk.load(open(folder + 'health.pkl', 'rb'))
+        self.pet.happiness = pk.load(open(hhfolder + 'happiness.pkl', 'rb'))
+        self.pet.health = pk.load(open(hhfolder + 'health.pkl', 'rb'))
         self.display_pet()
 
     def interaction(self, interaction, option):
@@ -82,16 +87,20 @@ class TamaWindow:
             x.grid(columnspan=6)
             self.active_widgets.append(x)
 
-    def interacting_bar(self, interaction):
+    def interacting_screen(self, interaction):
         '''Make a Loading Bar? (maybe a cancel button)? to signify that you are
         interacting with the pet and cannot do anything at the moment... Possibly
         even a new window demonstrating what's happening?...
         '''
+        self.destroy_widgets()
+
 
     def new_pet_window(self):
         '''Player creates a new pet, window has an Entry box and List
         of Animal types
         '''
+        lload = Button(self.master, text='Load Existing',
+                                    command = self.welcome_screen)
         lanimal = Label(self.master, text='Choose an Animal')
         lname = Label(self.master, text='Choose a Name')
         listanimal = Listbox(self.master)
@@ -99,13 +108,12 @@ class TamaWindow:
         ename = Entry(self.master, validate='key',
                       validatecommand=(onlyA, '%S'))
 
-        submit = Button(self.master, text='Submit', command=lambda:
+        submit = Button(self.master, text='Create New Pet', command=lambda:
                     self.make_pet(ename.get(), listanimal.curselection()[0]))
 
-        for widget in self.active_widgets:
-            widget.destroy()
+        self.destroy_widgets()
 
-        self.active_widgets = [lname, ename, lanimal, listanimal, submit]
+        self.active_widgets = [lload, lname, ename, lanimal, listanimal, submit]
         for widget in self.active_widgets:
             widget.pack()
 
@@ -116,13 +124,14 @@ class TamaWindow:
         '''Creates a directory for animal and puts animal name in
         save directory
         '''
-        if name in pk.load(open('saves.pkl', 'rb')):
+        save_file = 'saves/saves.pkl'
+        if name in pk.load(open(save_file, 'rb')):
             self.error_page('Name Already Exists')
         else:
             out_animal = os.listdir('animals')[animal]
-            self.pet_saves = pk.load(open('saves.pkl', 'rb'))
+            self.pet_saves = pk.load(open(save_file, 'rb'))
             self.pet_saves.append(name)
-            pk.dump(self.pet_saves, open('saves.pkl', 'wb'))
+            pk.dump(self.pet_saves, open(save_file, 'wb'))
             self.select_pet(name, out_animal)
 
     def bar_color(self, bar):
@@ -153,7 +162,7 @@ class TamaWindow:
         self.show_image()
         self.pet.health_happiness(load=True)
         self.health_happiness()
-        self.pet.wait_times(load=True)
+        self.pet.wait_times()
         self.display_seconds(initial=True)
         self.interaction_menu()
         self.thread = Thread(target=self.update_pet)
@@ -235,11 +244,14 @@ class TamaWindow:
         '''Called during update to returns how many seconds are left before
         pet is ready to interact
         '''
-        waittime = condition['wait']
+        waittime = condition['last_time']
         now = int(time.time())
-        last = pk.load(open(self.pet.folder + condition['file'], 'rb'))
-        wait = waittime - (now - last)
-        if wait > 0:
+        folder = self.pet.folder + '/wait_times/'
+        file = condition['type'] + '.pkl'
+        last = pk.load(open(folder + file, 'rb'))
+        wait = last - now
+        print('%s: %s = %s - %s' % (condition['type'], wait, last, now))
+        if 0 < wait <1000000:
             return str(wait)
         else:
             return 'Ready'

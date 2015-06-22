@@ -14,16 +14,13 @@ class Tamagotchi:
         self.animal = None
         self.folder = None
 
-        self.hungry = {'att':False, 'wait':3, 'file':'hungry.pkl',
-                       'type':'Eat', 'timestring':None}
-        self.tired = {'att':False, 'wait':6 , 'file':'tired.pkl',
-                      'type':'Sleep', 'timestring':None}
-        self.bored = {'att':False, 'wait':30, 'file':'bored.pkl',
-                      'type':'Play', 'timestring':None}
-        self.lonely = {'att':False, 'wait':1, 'file':'lonely.pkl',
-                       'type':'Love', 'timestring':None}
-        self.thirsty = {'att':False, 'wait':45, 'file':'thirsty.pkl',
-                        'type':'Drink', 'timestring': None}
+        now = int(time.time())
+
+        self.eat = {'last_time':now, 'type':'Eat', 'timestring':None}
+        self.sleep = {'last_time':now, 'type':'Sleep', 'timestring':None}
+        self.play = {'last_time':now, 'type':'Play', 'timestring':None}
+        self.love = {'last_time':now, 'type':'Love', 'timestring':None}
+        self.drink = {'last_time':now, 'type':'Drink', 'timestring': None}
 
         self.interactions = {
             # Action, Wait_Time, Health, Happiness, Action_Time
@@ -51,50 +48,45 @@ class Tamagotchi:
         # Wellness
         self.health = None
         self.happiness = None
+        self.conditions = [self.eat, self.sleep, self.drink,
+                                        self.play, self.love]
 
-        self.conditions = [self.hungry, self.tired,
-                           self.bored, self.lonely,
-                           self.thirsty]
-
-    def interact(self, in_condition, interaction):
+    def interact(self, interaction, option):
         '''Called when Player interacts with Pet --  Returns False if
         Pet is not ready to interact
         '''
         for cond in self.conditions:
-            if cond['type'] == in_condition:
+            if cond['type'] == interaction:
                 condition = cond
-
+        folder = self.folder + 'wait_times/'
+        file = condition['type'] + '.pkl'
         now = int(time.time())
-        old = pickle.load(open(self.folder + condition['file'], 'rb'))
+        old = pickle.load(open(folder + file, 'rb'))
 
-        if now - old > condition['wait']:
-            pickle.dump(now, open(self.folder + condition['file'], 'wb'))
+        if now - old > 0:
+            pickle.dump(now, open(folder + file, 'wb'))
             for action in self.interactions[condition['type']]:
-                if action[0] == interaction:
-                    condition['wait'] = action[1]
+                if action[0] == option:
+                    pickle.dump(now + action[1], open(folder + file, 'wb'))
                     self.health += action[2]
                     self.happiness += action[3]
-                    self.wait_times(save=True)
                     return True
         else:
             return False
 
-    def wait_times(self, load=False, save=False):
+    def wait_times(self):
         '''Pickle saves and loads wait_times for interactions
          '''
         folder = self.folder + 'wait_times/'
         if os.path.exists(folder[:-1]):
             for con in self.conditions:
                 path = folder + con['type'] + '.pkl'
-                if load:
-                    con['wait'] = pickle.load(open(path, 'rb'))
-                if save:
-                    pickle.dump(con['wait'], open(path, 'wb'))
+                con['last_time'] = pickle.load(open(path, 'rb'))
         else:
             os.mkdir(folder[:-1])
             for con in self.conditions:
                 path = folder + con['type'] + '.pkl'
-                pickle.dump(con['wait'], open(path, 'wb'))
+                pickle.dump(con['last_time'], open(path, 'wb'))
 
     def health_happiness(self, load=False, save=False):
         '''Pickle saves and loads health and happiness values
