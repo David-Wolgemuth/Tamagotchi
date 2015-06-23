@@ -1,3 +1,15 @@
+EAT = 'Eat'
+DRINK = 'Drink'
+SLEEP = 'Sleep'
+LOVE = 'Love'
+PLAY = 'Play'
+HEALTH = 'Health'
+HAPPINESS = 'Happiness'
 MINUTES = 60
 HOURS = MINUTES * 60
 DAYS = HOURS * 24
+HH = 'hh'
+TIMES = 'times'
+READY = 'Ready'
+PET_WINDOW = 1
+INT_WINDOW = 2
