@@ -3,8 +3,8 @@ import os
 import pickle as pkl
 import pdb
 
-MINUTES = 60
-HOURS = MINUTES * 60
+MINUTES = 6
+HOURS = MINUTES * 6
 DAYS = HOURS * 24
 
 class Tamagotchi:
@@ -79,6 +79,7 @@ class Tamagotchi:
                 pkl.dump(now, open(folder + file, 'wb'))
                 for action in self.interactions[condition['type']]:
                     if action[0] == option:
+                        print("\n\n\nhello\n\n\n")
                         pkl.dump(now + action[1], open(folder + file, 'wb'))
                         self.health += action[2]
                         self.happiness += action[3]
@@ -125,6 +126,21 @@ class Tamagotchi:
             pkl.dump(self.health, open(folder + health, 'wb'))
             pkl.dump(self.happiness, open(folder + happy, 'wb'))
 
+    def neglect(self):
+        now = int(time.time())
+        folder = self.folder + 'wait_times/'
+        for condition in self.conditions:
+            path = folder + condition['type'] + '.pkl'
+            last = pkl.load(open(path, 'rb'))
+            length = now - last
+            length = int(length / HOURS)
+            numb = int((length -8) / 4)
+            if numb < 0:
+                numb = 0
+            else:
+                print(condition['type'], numb)
+                self.alter_hh(health=True, happiness=True, amount=-numb)
+
     def interaction_text(self, interaction, option):
         if option == 'Sleep':
             return 'sleeping'
@@ -142,9 +158,9 @@ class Tamagotchi:
         elif interaction == 'Drink':
             return 'drinking ' + option.lower()
         elif option == 'Hug':
-            'receiving a hug'
+            return 'receiving a hug'
         elif option == 'Pet':
-            'being petted'
+            return 'being petted'
 
 if __name__ == '__main__':
     pet = Tamagotchi()

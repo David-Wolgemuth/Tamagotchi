@@ -1,11 +1,13 @@
 from tkinter import *
 from threading import Thread
-from tama import Tamagotchi
 import pickle as pk
 import os
-from PIL import Image, ImageTk
 import time
-import pdb
+
+from PIL import Image, ImageTk
+
+from tama import Tamagotchi
+
 
 class TamaWindow:
     def __init__(self, master):
@@ -67,33 +69,34 @@ class TamaWindow:
             pk.dump(50, open(hhfolder + 'happiness.pkl', 'wb'))
             pk.dump(50, open(hhfolder + 'health.pkl', 'wb'))
 
+        self.pet.wait_times()
+        # self.pet.neglect()
         self.pet.animal = pk.load(open(folder + 'animal_type.pkl', 'rb'))
         self.pet.happiness = pk.load(open(hhfolder + 'happiness.pkl', 'rb'))
         self.pet.health = pk.load(open(hhfolder + 'health.pkl', 'rb'))
         self.display_pet()
 
-    def interaction(self, interaction, option):
+    def interaction(self, interaction, option, finished=False):
         '''Processes Menubutton -- if pet is not ready, will return a message
         to player
         '''
-        duration = self.pet.interact(interaction, option, test_ready=True)
-
-        if duration:
-            self.finished_interaction = False
-            self.interacting_screen(duration, interaction, option)
-            if not self.finished_interaction:
-                self.pet.alter_hh(happiness=True, amount=-2)
-                return
+        if finished:
             self.pet.interact(interaction, option)
             self.health_happiness(update=True)
             self.pet.health_happiness(save=True)
+            self.display_pet()
+            return
+
+        duration = self.pet.interact(interaction, option, test_ready=True)
+        if duration:
+            self.interacting_screen(duration, interaction, option)
         else:
             message = '%s is not ready to %s.' % (self.pet.name, interaction)
             x = Button(text=message, command=lambda: x.destroy())
             x.grid(columnspan=6)
             self.active_widgets.append(x)
 
-    def interacting_screen(self, iDuration, interaction=None, option=None,
+    def interacting_screen(self, iDuration, interaction, option,
                                             update=False, current=0):
         '''Loading Bar and cancel button to signify that you are
         interacting with the pet and cannot do anything at the moment
@@ -108,7 +111,7 @@ class TamaWindow:
             int_label = Label(self.master, text=int_text)
             int_label.grid()
             stop_button = Button(self.master, text='Stop',
-                                                command=self.display_pet)
+                                command=lambda: self.display_pet(broke=True))
             stop_button.grid()
             self.bar_canvas = Canvas(self.master, width=500, height=40)
             self.thread = Thread(target=self.interacting_screen)
@@ -124,15 +127,14 @@ class TamaWindow:
         percent = (current/iDuration) * 100
 
         if percent > 100:
-            self.finished_interaction = True
-            self.display_pet()
+            self.interaction(interaction, option, finished=True)
             return
 
         self.bar_canvas.create_rectangle(0, 0, 5 * percent, 40,
                                        fill='medium purple', tags='bar')
 
         self.master.after(1000, lambda: self.interacting_screen
-                                (iDuration, update=True, current=current+1))
+            (iDuration,interaction, option, update=True, current=current+1))
 
 
 
@@ -195,9 +197,11 @@ class TamaWindow:
             return 'green3'
 
 
-    def display_pet(self):
+    def display_pet(self, broke=False):
         '''The main window for interacting with pet
         '''
+        if broke:
+            self.pet.alter_hh(happiness=True, amount=-2)
         self.destroy_widgets()
         self.master.title(self.pet.name)
         self.show_image()
@@ -207,6 +211,7 @@ class TamaWindow:
         self.display_seconds(initial=True)
         self.interaction_menu()
         self.thread = Thread(target=self.update_pet)
+        self.thread.daemon = True
         self.thread.start()
 
     def show_image(self):
