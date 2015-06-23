@@ -76,9 +76,15 @@ class TamaWindow:
         '''Processes Menubutton -- if pet is not ready, will return a message
         to player
         '''
-        ready = self.pet.interact(interaction, option)
+        duration = self.pet.interact(interaction, option, test_ready=True)
 
-        if ready:
+        if duration:
+            self.finished_interaction = False
+            self.interacting_screen(duration, interaction, option)
+            if not self.finished_interaction:
+                self.pet.alter_hh(happiness=True, amount=-2)
+                return
+            self.pet.interact(interaction, option)
             self.health_happiness(update=True)
             self.pet.health_happiness(save=True)
         else:
@@ -87,20 +93,47 @@ class TamaWindow:
             x.grid(columnspan=6)
             self.active_widgets.append(x)
 
-    def interacting_screen(self, interaction):
-        '''Make a Loading Bar? (maybe a cancel button)? to signify that you are
-        interacting with the pet and cannot do anything at the moment... Possibly
-        even a new window demonstrating what's happening?...
+    def interacting_screen(self, iDuration, interaction=None, option=None,
+                                            update=False, current=0):
+        '''Loading Bar and cancel button to signify that you are
+        interacting with the pet and cannot do anything at the moment
         '''
-        self.destroy_widgets()
-        duration = interaction[4]
+        if not update:
+            self.destroy_widgets()
+            self.show_image()
 
-        img = Image.open('animals/' + self.pet.animal)
-        png = ImageTk.PhotoImage(img)
-        img_label = Label(self.master, image=png)
-        img_label.image=png
-        img_label.grid(row=0, columnspan=6)
-        self.active_widgets.append(img_label)
+            int_text = '%s is %s.' % (self.pet.name,
+                       self.pet.interaction_text(interaction, option))
+
+            int_label = Label(self.master, text=int_text)
+            int_label.grid()
+            stop_button = Button(self.master, text='Stop',
+                                                command=self.display_pet)
+            stop_button.grid()
+            self.bar_canvas = Canvas(self.master, width=500, height=40)
+            self.thread = Thread(target=self.interacting_screen)
+            self.thread.start()
+            self.bar_canvas.grid()
+            self.bar_canvas.create_rectangle(0, 0, 0, 40,
+                                       fill='medium purple', tags='bar')
+            self.active_widgets.append(int_label)
+            self.active_widgets.append(stop_button)
+            self.active_widgets.append(self.bar_canvas)
+
+        self.bar_canvas.delete('bar')
+        percent = (current/iDuration) * 100
+
+        if percent > 100:
+            self.finished_interaction = True
+            self.display_pet()
+            return
+
+        self.bar_canvas.create_rectangle(0, 0, 5 * percent, 40,
+                                       fill='medium purple', tags='bar')
+
+        self.master.after(1000, lambda: self.interacting_screen
+                                (iDuration, update=True, current=current+1))
+
 
 
     def new_pet_window(self):
@@ -240,10 +273,11 @@ class TamaWindow:
             if initial:
                 condition['timestring'] = StringVar()
                 condition['timestring'].set(self.seconds_left(condition))
-                tlabel = Label(self.master, text=condition['type'])
+                # tlabel = Label(self.master, text=condition['type'])
                 label = Label(self.master, textvariable=condition['timestring'])
-                tlabel.grid(row=2, column=i)
+                # tlabel.grid(row=2, column=i)
                 label.grid(row=3, column=i)
+                # self.active_widgets.append(tlabel)
                 self.active_widgets.append(label)
             else:
                 condition['timestring'].set(self.seconds_left(condition))
@@ -258,7 +292,6 @@ class TamaWindow:
         file = condition['type'] + '.pkl'
         last = pk.load(open(folder + file, 'rb'))
         wait = last - now
-        print('%s: %s = %s - %s' % (condition['type'], wait, last, now))
         if 0 < wait <1000000:
             return str(wait)
         else:
@@ -277,7 +310,7 @@ class TamaWindow:
                 m_button.menu.add_checkbutton(label=option[0],
                         command=lambda int=interaction, opt=option[0]:
                                             self.interaction(int, opt))
-            self.active_widgets.append(m_button.grid)
+            self.active_widgets.append(m_button)
             m_button.grid(row=4, column=i)
 
 
