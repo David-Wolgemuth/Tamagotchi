@@ -93,6 +93,14 @@ class TamaWindow:
         even a new window demonstrating what's happening?...
         '''
         self.destroy_widgets()
+        duration = interaction[4]
+
+        img = Image.open('animals/' + self.pet.animal)
+        png = ImageTk.PhotoImage(img)
+        img_label = Label(self.master, image=png)
+        img_label.image=png
+        img_label.grid(row=0, columnspan=6)
+        self.active_widgets.append(img_label)
 
 
     def new_pet_window(self):

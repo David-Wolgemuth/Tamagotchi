@@ -23,7 +23,7 @@ class Tamagotchi:
         self.drink = {'last_time':now, 'type':'Drink', 'timestring': None}
 
         self.interactions = {
-            # Action, Wait_Time, Health, Happiness, Action_Time
+            # Action, Wait Time, Health, Happiness, Action Time
             'Eat':[['Cheeseburger', 3 * HOURS, -1, 1, 20],
                     ['Salad', 90 * MINUTES, 1, -1, 20],
                     ['Pizza', int(3.5 * HOURS), -2, 2, 30],
