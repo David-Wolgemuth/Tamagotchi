@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e38ef94-3dfe-4f66-8e12-acc53e873c7f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/interact.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/constants.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/interactions.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/interactions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/main.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tamagotchi.iws" />
@@ -539,12 +532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1435060032202</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Working on 2.0&#10;Still Needs The MenuButtons and the Interaction Window to catch up to 1.0">
+      <created>1435079622021</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1435079622021</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1276" height="777" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -582,7 +581,8 @@
     <MESSAGE value="Fixed Bugs" />
     <MESSAGE value="Added Interaction Bar, Set With Times" />
     <MESSAGE value="Starting 2.0 --- Too many bugs with the first one..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting 2.0 --- Too many bugs with the first one..." />
+    <MESSAGE value="Working on 2.0&#10;Still Needs The MenuButtons and the Interaction Window to catch up to 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on 2.0&#10;Still Needs The MenuButtons and the Interaction Window to catch up to 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
