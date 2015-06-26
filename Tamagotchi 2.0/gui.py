@@ -1,4 +1,5 @@
 from constants import *
+from interactions import *
 from threading import Thread
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -94,22 +95,36 @@ class TamaTk:
         self.pet.animal_type(animal)
         self.display_pet()
 
+    def display_pet(self):
+        self.destroy_widgets()
+        self.master.title(self.pet.name)
+        self.show_image()
+        self.hh_bars(set_up=True)
+        self.display_seconds(set_up=True)
+        self.active_window = PET_WINDOW
+        self.thread = Thread(target=lambda: self.update_GUI)
+        self.thread.start()
+
+    def show_image(self, ROW=0, COLUMN=0, cSpan=6):
+        '''Adds a label containing PNG of animal
+        '''
+        img = Image.open('animals/' + self.pet.animal)
+        png = ImageTk.PhotoImage(img)
+        img_label = tk.Label(self.master, image=png)
+        img_label.image=png
+        img_label.grid(row=ROW, column=COLUMN, columnspan=cSpan)
+        self.active_widgets.append(img_label)
+
     def bar_color(self, bar):
         '''Bar will change color on scale from red to green
         '''
-        print(bar)
         x = self.pet.hh[bar]
+        if x < 20:          return 'red4'
+        elif 20 <= x < 40:  return 'orange red'
+        elif 40 <= x < 60:  return 'medium purple'
+        elif 60 <= x < 80:  return 'cyan3'
+        elif 80 <= x:       return 'green3'
 
-        if x < 20:
-            return 'red4'
-        elif 20 <= x < 40:
-            return 'orange red'
-        elif 40 <= x < 60:
-            return 'medium purple'
-        elif 60 <= x < 80:
-            return 'cyan3'
-        elif 80 <= x:
-            return 'green3'
 
     def hh_bars(self, set_up=False):
         '''Creates labels containing health and happiness values
@@ -145,26 +160,6 @@ class TamaTk:
                 bar.delete('bar')
                 bar.create_rectangle(0, 0, val, 10, fill=color, tags='bar')
 
-    def show_image(self, ROW=0, COLUMN=0, cSpan=6):
-        '''Adds a label containing PNG of animal
-        '''
-        img = Image.open('animals/' + self.pet.animal)
-        png = ImageTk.PhotoImage(img)
-        img_label = tk.Label(self.master, image=png)
-        img_label.image=png
-        img_label.grid(row=ROW, column=COLUMN, columnspan=cSpan)
-        self.active_widgets.append(img_label)
-
-    def display_pet(self):
-        self.destroy_widgets()
-        self.master.title(self.pet.name)
-        self.show_image()
-        self.hh_bars(set_up=True)
-        self.display_seconds(set_up=True)
-        self.active_window = PET_WINDOW
-        self.thread = Thread(target=lambda: self.update_GUI)
-        self.thread.start()
-
     def display_seconds(self, set_up=False):
         '''Shows how long until pet is ready to interact
         '''
@@ -180,8 +175,53 @@ class TamaTk:
             else:
                 time_string.set(self.pet.seconds_left(string))
 
+    def display_menu_buttons(self):
+        '''Menubars corrisponding to types of interactions
+        '''
+        for i, i_type in enumerate(INTERACTION_TYPES):
+            m_button = tk.Menubutton(self.master, text=i_type)
+            m_button.grid(row=4, column=i)
+            m_button.menu = tk.Menu(m_button)
+            m_button['menu'] = m_button.menu
+            for int in INTERACTION_TYPES[i_type]:
+                m_button.menu.add_checkbutton(label=int,
+                        command=lambda int=int: self.interact_with_pet(int))
+            self.active_widgets.append(m_button)
+
+    def interact_with_pet(self, interaction):
+        i_type = get_interaction_type(interaction)
+        is_ready = self.pet.seconds_left(i_type)
+        if is_ready == READY:
+            self.display_interaction(interaction)
+        else:
+            message = '%s is not ready to %s' % (self.pet.name, i_type)
+            but = tk.Button(self.master, text=message,
+                            command=lambda: but.destroy())
+            but.grid(columnspan=6)
+            self.active_widgets.append(but)
+
+    def display_interaction(self, interaction):
+        self.destroy_widgets()
+        self.show_image()
+
+        message = 'Stop %s from %s.' % (self.pet.name,
+                                        INTERACTIONS[interaction].text)
+        stop = tk.Button(self.master, text=message,
+                         command=lambda:  self.stop_interaction(interaction))
+        stop.grid()
+        self.active_widgets.append(stop)
+
+        self.interaction_bar = tk.Canvas(self.master, width = 500, height=40)
+        self.interaction_bar.grid()
+        self.interaction_bar.create_rectangle(0, 0, 0, 40,
+                                        fill='medium purple', tags='bar')
+        self.active_widgets.append(self.interaction_bar)
+        self.active_window = INT_WINDOW
+
+
     def update_GUI(self):
         if self.active_window == PET_WINDOW:
             self.pet.update_seconds()
             self.display_seconds()
             self.master.after(1000, self.update_GUI)
+        elif self.active_window == INT_WINDOW:

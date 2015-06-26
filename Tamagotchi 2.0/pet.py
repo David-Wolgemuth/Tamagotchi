@@ -79,7 +79,7 @@ class Tamagotchi:
         return str(left)
 
     def change_stats(self, interaction):
-        int_type = get_type(interaction)
+        int_type = get_interaction_type(interaction)
         int_object = INTERACTIONS[interaction]
         now = int(time.time())
         wait = int_object.wait_time

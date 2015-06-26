@@ -10,7 +10,7 @@ class Interaction:
         self.action_time = action_time
         self.text = text
 
-def get_type(interaction):
+def get_interaction_type(interaction):
     for type in INTERACTION_TYPES:
         if interaction in INTERACTION_TYPES[type]:
             return type
