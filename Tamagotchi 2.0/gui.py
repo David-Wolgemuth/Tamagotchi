@@ -5,6 +5,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from pet import Tamagotchi
 import os
+import shutil
 
 class TamaTk:
     def __init__(self, master):
@@ -14,6 +15,7 @@ class TamaTk:
         self.saves = []
         self.find_saves()
         self.pet = None
+        self.current_interaction = None
         self.bars = []
         self.welcome_screen()
 
@@ -37,14 +39,16 @@ class TamaTk:
         old = tk.Listbox(self.master)
         load = tk.Button(self.master, text='Load Pet', command=lambda:
                             self.select_pet(old.get(old.curselection()[0])))
-
+        dlt = tk.Button(self.master, text='Delete Pet', command=lambda:
+                            self.delete_pet(old.get(old.curselection()[0])))
         new.grid(row=0, column=0)
-        load.grid(row=0, column=1)
-        old.grid(columnspan=2)
+        load.grid(row=1, column=0)
+        dlt.grid(row=2, column=0)
+        old.grid(row=0,column=1, rowspan=3)
         for name in self.saves:
             old.insert(tk.END, name)
 
-        self.active_widgets = [new, load, old]
+        self.active_widgets = [new, load, old, dlt]
 
     def new_pet_window(self):
         '''Player creates a new pet, window has an Entry box and List
@@ -92,20 +96,60 @@ class TamaTk:
 
         self.pet.assign_folder()
         self.pet.pkl_stats(load=True)
+        self.pet.calculate_neglect()
         self.pet.animal_type(animal)
         self.display_pet()
+
+    def delete_pet(self, name, sure=False):
+        if sure:
+            folder = 'saves/' + name
+            shutil.rmtree(folder)
+            self.saves.remove(name)
+            self.welcome_screen()
+            return
+
+        self.destroy_widgets()
+        message = 'Are you sure you want to PERMANENTLY delete %s?' % name
+        lab = tk.Label(self.master, text=message)
+        y = tk.Button(self.master, text='Yes, I\m sure.',
+                        command=lambda: self.delete_pet(name, sure=True))
+        n = tk.Button(self.master, text='Cancel', command=self.welcome_screen)
+        lab.grid(row=0, columnspan=2)
+        n.grid(row=1, column=0)
+        y.grid(row=1, column=1)
+        self.active_widgets = [lab, y, n]
+
+
+
+    def return_to_welcome(self, setup=False):
+        if setup:
+            but = tk.Button(self.master, text='Return to Welcome Screen',
+                        command=self.return_to_welcome)
+            but.grid(columnspan=2)
+            self.active_widgets.append(but)
+        else:
+            self.pet = None
+            self.welcome_screen()
+
+    def print_stats(self):
+        but = tk.Button(self.master, text='show stats',
+                                     command=self.pet.print_stats)
+        but.grid(row=0, column=5)
+        self.active_widgets.append(but)
 
     def display_pet(self):
         self.destroy_widgets()
         self.master.title(self.pet.name)
+        self.return_to_welcome(setup=True)
+        self.print_stats()
         self.show_image()
         self.hh_bars(set_up=True)
         self.display_seconds(set_up=True)
-        self.active_window = PET_WINDOW
-        self.thread = Thread(target=lambda: self.update_GUI)
+        self.display_menu_buttons()
+        self.thread = Thread(target=self.update_GUI)
         self.thread.start()
 
-    def show_image(self, ROW=0, COLUMN=0, cSpan=6):
+    def show_image(self, ROW=1, COLUMN=0, cSpan=6):
         '''Adds a label containing PNG of animal
         '''
         img = Image.open('animals/' + self.pet.animal)
@@ -147,8 +191,8 @@ class TamaTk:
                     COL = 3
                     self.happiness_bar = bar
 
-                label.grid(row=1, column=COL)
-                bar.grid(row=1, column=COL+1)
+                label.grid(row=2, column=COL)
+                bar.grid(row=2, column=COL+1)
                 self.active_widgets.append(label)
                 self.active_widgets.append(bar)
 
@@ -165,25 +209,24 @@ class TamaTk:
         '''
         for i, string in enumerate(sorted(self.pet.time_strings.items())):
             string = string[0]
-            time_string = self.pet.time_strings[string]
             if set_up:
-                time_string = tk.StringVar()
-                time_string.set(self.pet.seconds_left(string))
-                label = tk.Label(self.master, textvariable=time_string)
+                self.pet.time_strings[string] = tk.StringVar()
+                self.pet.time_strings[string].set(self.pet.seconds_left(string))
+                label = tk.Label(self.master, textvariable=self.pet.time_strings[string])
                 label.grid(row=3, column=i)
                 self.active_widgets.append(label)
             else:
-                time_string.set(self.pet.seconds_left(string))
+                self.pet.time_strings[string].set(self.pet.seconds_left(string))
 
     def display_menu_buttons(self):
         '''Menubars corrisponding to types of interactions
         '''
-        for i, i_type in enumerate(INTERACTION_TYPES):
+        for i, i_type in enumerate(sorted(INTERACTION_TYPES)):
             m_button = tk.Menubutton(self.master, text=i_type)
             m_button.grid(row=4, column=i)
             m_button.menu = tk.Menu(m_button)
             m_button['menu'] = m_button.menu
-            for int in INTERACTION_TYPES[i_type]:
+            for int in INTERACTION_TYPES[i_type].interactions:
                 m_button.menu.add_checkbutton(label=int,
                         command=lambda int=int: self.interact_with_pet(int))
             self.active_widgets.append(m_button)
@@ -207,7 +250,7 @@ class TamaTk:
         message = 'Stop %s from %s.' % (self.pet.name,
                                         INTERACTIONS[interaction].text)
         stop = tk.Button(self.master, text=message,
-                         command=lambda:  self.stop_interaction(interaction))
+                         command=self.stop_interaction)
         stop.grid()
         self.active_widgets.append(stop)
 
@@ -216,12 +259,38 @@ class TamaTk:
         self.interaction_bar.create_rectangle(0, 0, 0, 40,
                                         fill='medium purple', tags='bar')
         self.active_widgets.append(self.interaction_bar)
-        self.active_window = INT_WINDOW
+        self.current_interaction = [interaction, 0]
 
+    def stop_interaction(self):
+        self.pet.change_stats('Stop')
+        self.current_interaction = None
+        self.display_pet()
+
+    def update_interaction(self):
+        '''Loading Bar and cancel button to signify that you are
+        interacting with the pet and cannot do anything at the moment
+        '''
+        interaction = INTERACTIONS[self.current_interaction[0]]
+        current = self.current_interaction[1]
+        duration = interaction.action_time
+        percent = (current / duration) * 100
+        if percent > 100:
+            self.current_interaction = None
+            self.pet.change_stats(interaction.interaction)
+            self.display_pet()
+            return
+        else:
+            self.interaction_bar.delete('bar')
+            self.interaction_bar.create_rectangle(0, 0, 5*percent, 40,
+                                            fill='medium purple', tags='bar')
+        self.current_interaction[1] += 1
 
     def update_GUI(self):
-        if self.active_window == PET_WINDOW:
+        if self.current_interaction:
+            self.update_interaction()
+            self.master.after(1000, self.update_GUI)
+        elif self.pet:
             self.pet.update_seconds()
             self.display_seconds()
             self.master.after(1000, self.update_GUI)
-        elif self.active_window == INT_WINDOW:
+

@@ -3,6 +3,7 @@ from constants import *
 import pickle as pkl
 import os
 import time
+import pdb
 
 class Tamagotchi:
     def __init__(self):
@@ -16,13 +17,14 @@ class Tamagotchi:
             HAPPINESS:None,
         }
 
-        self.times = self.time_strings = {
+        self.times = {
             EAT:None,
             DRINK:None,
             SLEEP:None,
             LOVE:None,
             PLAY:None,
         }
+        self.time_strings = self.times.copy()
 
     def assign_folder(self):
         self.folder = 'saves/' + self.name
@@ -74,21 +76,50 @@ class Tamagotchi:
         now = int(time.time())
         last = self.times[int_type]
         left = last - now
+
         if not 0 < left < 1000000:
             left = READY
         return str(left)
 
     def change_stats(self, interaction):
-        int_type = get_interaction_type(interaction)
         int_object = INTERACTIONS[interaction]
-        now = int(time.time())
-        wait = int_object.wait_time
-
-        self.times[int_type] = now + wait
         self.hh[HAPPINESS] += int_object.happiness
         self.hh[HEALTH] += int_object.health
 
+        int_type = get_interaction_type(interaction)
+        if int_type:
+            now = int(time.time())
+            wait = int_object.wait_time
+            self.times[int_type] = now + wait
+
         self.pkl_stats(save=True)
+
+    def print_stats(self):
+        now = int(time.time())
+        print('Now: %s' % now)
+        print('Health: %s' % (self.hh[HEALTH]))
+        print('Happiness: %s' % (self.hh[HAPPINESS]))
+        print('Eat: %s' % (now-self.times[EAT]))
+        print('Drink: %s' % (now-self.times[DRINK]))
+        print('Sleep: %s' % (now-self.times[SLEEP]))
+        print('Love: %s' % (now-self.times[LOVE]))
+        print('Play: %s' % (now-self.times[PLAY]))
+
+    def calculate_neglect(self):
+        path = self.folder + 'neglect.pkl'
+        now = int(time.time())
+        if os.path.exists(path):
+            last = pkl.load(open(path, 'rb'))
+            if now - last > 1 * DAYS:
+                for its in INTERACTION_TYPES:
+                    i_type = INTERACTION_TYPES[its]
+                    t = now - self.times[its]
+                    while t > DAYS * i_type.neglect_days:
+                        self.hh[HEALTH] -= i_type.neglect_health
+                        self.hh[HAPPINESS] -= i_type.neglect_happiness
+                        t -= 1 * DAYS
+        pkl.dump(now, open(path, 'wb'))
+
 
 if __name__=='__main__':
     frank = Tamagotchi()

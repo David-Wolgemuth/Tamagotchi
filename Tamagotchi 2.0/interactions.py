@@ -10,9 +10,17 @@ class Interaction:
         self.action_time = action_time
         self.text = text
 
+class Interaction_Type:
+    def __init__(self, i_type, interactions, neglect):
+        self.i_type = i_type
+        self.interactions = interactions
+        self.neglect_days= neglect[0]
+        self.neglect_health = neglect[1]
+        self.neglect_happiness = neglect[2]
+
 def get_interaction_type(interaction):
     for type in INTERACTION_TYPES:
-        if interaction in INTERACTION_TYPES[type]:
+        if interaction in INTERACTION_TYPES[type].interactions:
             return type
 
 INTERACTIONS = {
@@ -46,14 +54,20 @@ INTERACTIONS = {
                 12 * HOURS, 6, 6, 2 * HOURS, 'snoring... zzz..'),
     'Nap': Interaction('Nap',
                 4 * HOURS, 0, 3, 30 * MINUTES, 'taking a short nap'),
+    'Stop': Interaction('Stop', 0, 0, -2, 0, None)
 }
 
 INTERACTION_TYPES = {
-    EAT:['Cheeseburger', 'Salad', 'Pizza', 'Celery'],
-    DRINK:['Water', 'Soda', 'Coffee', 'Beer'],
-    LOVE:['Hug', 'Pet'],
-    PLAY:['Basketball', 'Frisbee','Watch TV'],
-    SLEEP:['Long Sleep', 'Nap']
+    EAT: Interaction_Type(EAT, ['Cheeseburger', 'Salad', 'Pizza', 'Celery'],
+                          [5,2,1]),
+    DRINK: Interaction_Type(DRINK, ['Water', 'Soda', 'Coffee', 'Beer'],
+                            [3,3,0]),
+    LOVE: Interaction_Type(LOVE, ['Hug', 'Pet'],
+                           [7,0,10]),
+    PLAY: Interaction_Type(PLAY, ['Basketball', 'Frisbee','Watch TV'],
+                           [7,2,2]),
+    SLEEP: Interaction_Type(SLEEP, ['Long Sleep', 'Nap'],
+                            [3,3,0])
 }
 
 if __name__=='__main__':
