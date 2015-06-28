@@ -2,53 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e38ef94-3dfe-4f66-8e12-acc53e873c7f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/animal_type.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/hh/happiness.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/hh/health.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/times/drink.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/times/eat.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/times/love.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/times/play.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/DDD/times/sleep.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/animal_type.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/hh/happiness.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/hh/health.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/times/drink.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/times/eat.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/times/love.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/times/play.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/GG/times/sleep.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/animal_type.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/hh/happiness.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/hh/health.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/times/drink.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/times/eat.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/times/love.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/times/play.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Kitty/times/sleep.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/animal_type.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/hh/happiness.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/hh/health.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/times/drink.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/times/eat.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/times/love.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/times/play.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/Manny/times/sleep.pkl" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/drink.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/drink.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/drink.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/drink.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/eat.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/eat.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/eat.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/eat.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/hh/happiness.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/hh/happiness.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/happiness.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/happiness.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/health.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/health.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/love.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/love.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/love.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/love.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/play.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/play.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/play.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/play.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/sleep.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/sleep.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/sleep.pkl" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/sleep.pkl" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/animal_type.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/hh/happiness.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/hh/health.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/drink.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/eat.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/love.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/play.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/FF/times/sleep.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/animal_type.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/happiness.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/hh/health.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/drink.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/eat.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/love.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/play.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/saves/HHH/times/sleep.pkl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/saves/saves.pkl" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Tamagotchi.iml" afterPath="$PROJECT_DIR$/.idea/Tamagotchi.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/interactions.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/interactions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/main.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" afterPath="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -70,94 +44,64 @@
     <favorites_list name="Tamagotchi" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="tama.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#0#11#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tama_gui.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama_gui.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.32352942">
-                  <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="pet.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/pet.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="gui.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/gui.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
-                  <folding>
-                    <element signature="e#0#23#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="interactions.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.42058823">
-                  <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/constants.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="pet.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/pet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="108" column="34" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gui.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/gui.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.194118">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interactions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/constants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -181,12 +125,12 @@
         <option value="$PROJECT_DIR$/Tamagotchi 2.0/CONSTANTS.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 1.0/tama.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py" />
-        <option value="$PROJECT_DIR$/Tamagotchi 2.0/main.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 1.0/tama_gui.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 2.0/interactions.py" />
-        <option value="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 2.0/constants.py" />
+        <option value="$PROJECT_DIR$/Tamagotchi 2.0/main.py" />
         <option value="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" />
+        <option value="$PROJECT_DIR$/Tamagotchi 2.0/pet.py" />
       </list>
     </option>
   </component>
@@ -194,8 +138,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="638" />
     <option name="y" value="23" />
-    <option name="width" value="1276" />
+    <option name="width" value="638" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -221,7 +166,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -240,58 +184,8 @@
               <option name="myItemId" value="Tamagotchi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Tamagotchi 2.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi 2.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saves" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tamagotchi 2.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saves" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HHH" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,12 +205,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tkinter/Family_Generator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tamagotchi 2.0" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
@@ -329,23 +224,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration default="false" name="t_diff" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/time" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Tamagotchi" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/time/t_diff.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="tama_gui" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -410,6 +288,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Tamagotchi" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tamagotchi 2.0/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="gui" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tamagotchi 2.0" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Tamagotchi" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tamagotchi 2.0/gui.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -543,7 +438,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tamagotchi 2.0" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -555,19 +450,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.tama" />
-      <item index="1" class="java.lang.String" itemvalue="Python.t_diff" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tama_gui" />
-      <item index="3" class="java.lang.String" itemvalue="Python.interactions" />
-      <item index="4" class="java.lang.String" itemvalue="Python.pet" />
-      <item index="5" class="java.lang.String" itemvalue="Python.main" />
+      <item index="1" class="java.lang.String" itemvalue="Python.tama_gui" />
+      <item index="2" class="java.lang.String" itemvalue="Python.interactions" />
+      <item index="3" class="java.lang.String" itemvalue="Python.pet" />
+      <item index="4" class="java.lang.String" itemvalue="Python.main" />
+      <item index="5" class="java.lang.String" itemvalue="Python.gui" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tama_gui" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pet" />
-        <item index="3" class="java.lang.String" itemvalue="Python.interactions" />
-        <item index="4" class="java.lang.String" itemvalue="Python.t_diff" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pet" />
+        <item index="2" class="java.lang.String" itemvalue="Python.gui" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tama_gui" />
+        <item index="4" class="java.lang.String" itemvalue="Python.interactions" />
       </list>
     </recent_temporary>
   </component>
@@ -636,11 +531,17 @@
       <option name="project" value="LOCAL" />
       <updated>1435295504392</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Working on 2.0&#10;Finished interacting screen, neglect calculator, some extra buttons for changing between screens">
+      <created>1435344330273</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1435344330273</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1276" height="777" extended-state="6" />
+    <frame x="638" y="23" width="638" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -656,12 +557,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -681,7 +582,8 @@
     <MESSAGE value="Starting 2.0 --- Too many bugs with the first one..." />
     <MESSAGE value="Working on 2.0&#10;Still Needs The MenuButtons and the Interaction Window to catch up to 1.0" />
     <MESSAGE value="Working on 2.0&#10;Added MenuButtons, started Interaction Screen, need to find an efficient way to loop it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on 2.0&#10;Added MenuButtons, started Interaction Screen, need to find an efficient way to loop it." />
+    <MESSAGE value="Working on 2.0&#10;Finished interacting screen, neglect calculator, some extra buttons for changing between screens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on 2.0&#10;Finished interacting screen, neglect calculator, some extra buttons for changing between screens" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -690,6 +592,72 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/pet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -730,14 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -758,7 +718,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -802,14 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -830,7 +784,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1006,19 +962,39 @@
         <state />
       </provider>
     </entry>
-    <entry file="file:///usr/local/Cellar/python3/3.4.3/Frameworks/Python.framework/Versions/3.4/lib/python3.4/tkinter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1532" column="0" selection-start-line="1532" selection-start-column="0" selection-end-line="1532" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/python3/3.4.3/Frameworks/Python.framework/Versions/3.4/lib/python3.4/threading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33235294">
           <caret line="867" column="0" selection-start-line="867" selection-start-column="0" selection-end-line="867" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.785294">
+          <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.4.3/Frameworks/Python.framework/Versions/3.4/lib/python3.4/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33235294">
+          <caret line="1532" column="0" selection-start-line="1532" selection-start-column="0" selection-end-line="1532" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1032,36 +1008,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/tama_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29117647">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 1.0/tama_gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32352942">
-          <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1069,28 +1019,28 @@
     <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/pet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+          <caret line="108" column="34" selection-start-line="108" selection-start-column="34" selection-end-line="108" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/gui.py">
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/interactions.py">
+    <entry file="file://$PROJECT_DIR$/Tamagotchi 2.0/gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42058823">
-          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-          <folding />
+        <state vertical-scroll-proportion="-10.194118">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

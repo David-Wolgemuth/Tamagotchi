@@ -7,10 +7,10 @@ import pdb
 
 class Tamagotchi:
     def __init__(self):
-
         self.name = None
         self.animal = None
         self.folder = None
+        self.neglect = False
 
         self.hh = {
             HEALTH:None,
@@ -30,6 +30,9 @@ class Tamagotchi:
         self.folder = 'saves/' + self.name
 
     def animal_type(self, animal=None):
+        '''Assigns animal type to pet.  Loads if pickle exists, else saves
+        pickle file
+        '''
         file_path = self.folder + '/animal_type.pkl'
         if os.path.isfile(file_path):
             self.animal = pkl.load(open(file_path, 'rb'))
@@ -38,7 +41,10 @@ class Tamagotchi:
             self.animal = animal
 
     def pkl_stats(self, save=False, load=False):
-
+        '''Pickles stats for Health, Happiness, and last time for each
+        interaction with pet.  Will create new stats if .pkl files do
+        not exist.
+        '''
         for stat_type in HH, TIMES:
             if stat_type == HH:
                 stat_group = self.hh
@@ -63,9 +69,9 @@ class Tamagotchi:
                 if save:
                     if not value:
                         if stat_type == HH:
-                            value = 50
+                            stat_group[stat] = 50
                         elif stat_type == TIMES:
-                            value = int(time.time())
+                            stat_group[stat] = int(time.time())
                     pkl.dump(value, open(path, 'wb'))
 
     def update_seconds(self):
@@ -73,6 +79,9 @@ class Tamagotchi:
             self.seconds_left(int_type)
 
     def seconds_left(self, int_type):
+        '''Called with 'update_seconds' function and returns string
+        to be used in 'TamaTk.display_seconds' function
+        '''
         now = int(time.time())
         last = self.times[int_type]
         left = last - now
@@ -82,6 +91,8 @@ class Tamagotchi:
         return str(left)
 
     def change_stats(self, interaction):
+        '''Reads interaction and alters pet's stats
+        '''
         int_object = INTERACTIONS[interaction]
         self.hh[HAPPINESS] += int_object.happiness
         self.hh[HEALTH] += int_object.health
@@ -95,6 +106,8 @@ class Tamagotchi:
         self.pkl_stats(save=True)
 
     def print_stats(self):
+        '''Used for debugging only
+        '''
         now = int(time.time())
         print('Now: %s' % now)
         print('Health: %s' % (self.hh[HEALTH]))
@@ -104,13 +117,17 @@ class Tamagotchi:
         print('Sleep: %s' % (now-self.times[SLEEP]))
         print('Love: %s' % (now-self.times[LOVE]))
         print('Play: %s' % (now-self.times[PLAY]))
+        print('<-------------->')
 
     def calculate_neglect(self):
-        path = self.folder + 'neglect.pkl'
+        '''Alters pet health/happiness based on length of time since
+        last interaction
+        '''
+        path = self.folder + '/neglect.pkl'
         now = int(time.time())
         if os.path.exists(path):
             last = pkl.load(open(path, 'rb'))
-            if now - last > 1 * DAYS:
+            if now - last > 1 * DAYS: # Gives user 1 day to care for pet
                 for its in INTERACTION_TYPES:
                     i_type = INTERACTION_TYPES[its]
                     t = now - self.times[its]
@@ -118,7 +135,19 @@ class Tamagotchi:
                         self.hh[HEALTH] -= i_type.neglect_health
                         self.hh[HAPPINESS] -= i_type.neglect_happiness
                         t -= 1 * DAYS
-        pkl.dump(now, open(path, 'wb'))
+                        pkl.dump(now, open(path, 'wb'))
+        else:
+            pkl.dump(now, open(path, 'wb'))
+        self.is_neglected()
+
+    def is_neglected(self):
+        '''Called after calculate_neglect function
+        '''
+        if self.hh[HEALTH] < 0:
+            self.neglect = HEALTH
+            return
+        if self.hh[HAPPINESS] < 0:
+            self.neglect = HAPPINESS
 
 
 if __name__=='__main__':

@@ -1,25 +1,40 @@
 from constants import *
 from interactions import *
-from threading import Thread
+from threading import Thread, current_thread
 import tkinter as tk
 from PIL import Image, ImageTk
 from pet import Tamagotchi
 import os
 import shutil
+import pdb
 
 class TamaTk:
     def __init__(self, master):
         self.master = master
+        self.center_window()
         self.master.title('Tamagotchi')
         self.active_widgets = []
         self.saves = []
         self.find_saves()
         self.pet = None
+        self.thread = None
         self.current_interaction = None
         self.bars = []
         self.welcome_screen()
 
+    def center_window(self):
+        '''Places window in the center of the computer's display
+        '''
+        self.master.update_idletasks()
+        width = self.master.winfo_width()
+        height = self.master.winfo_height()
+        x = (self.master.winfo_screenwidth() // 2) - (width // 2)
+        y = (self.master.winfo_screenheight() // 2) - (height // 2)
+        self.master.geometry('+%s+%s' % (x, y))
+
     def find_saves(self):
+        '''Loads all folders in the 'saves' directory
+        '''
         if os.path.isdir('saves'):
             for folder in os.listdir('saves'):
                 if os.path.isdir('saves/' + folder):
@@ -47,7 +62,7 @@ class TamaTk:
         old.grid(row=0,column=1, rowspan=3)
         for name in self.saves:
             old.insert(tk.END, name)
-
+        self.center_window()
         self.active_widgets = [new, load, old, dlt]
 
     def new_pet_window(self):
@@ -55,7 +70,6 @@ class TamaTk:
         of Animal types
         '''
         self.destroy_widgets()
-
         lload = tk.Button(self.master, text='Load Existing',
                                     command = self.welcome_screen)
         lanimal = tk.Label(self.master, text='Choose an Animal')
@@ -64,19 +78,22 @@ class TamaTk:
         onlyA = self.master.register(lambda x: x.isalpha())
         ename = tk.Entry(self.master, validate='key',
                                             validatecommand=(onlyA, '%S'))
-
         submit = tk.Button(self.master, text='Create New Pet', command=lambda:
                     self.make_pet(ename.get(), listanimal.curselection()[0]))
-
         self.active_widgets = [lload, lname, ename,
                                lanimal, listanimal, submit]
         for widget in self.active_widgets:
             widget.pack()
-
         for animal in os.listdir('animals'):
             listanimal.insert(tk.END, animal[:-4])
+        self.center_window()
 
     def make_pet(self, name, animal):
+        '''Determines if pet name already exists, continues to
+        'select_pet' function
+        '''
+        if not os.path.exists('saves'):
+            os.mkdir('saves')
         if name in os.listdir('saves'):
             x = tk.Button(text='Name Already Exists',
                           command=lambda: x.destroy())
@@ -84,7 +101,6 @@ class TamaTk:
             self.active_widgets.append(x)
         else:
             animal = os.listdir('animals')[animal]
-            print(animal)
             self.select_pet(name, animal)
 
     def select_pet(self, name, animal=None):
@@ -93,7 +109,6 @@ class TamaTk:
         '''
         self.pet = Tamagotchi()
         self.pet.name = name
-
         self.pet.assign_folder()
         self.pet.pkl_stats(load=True)
         self.pet.calculate_neglect()
@@ -101,6 +116,9 @@ class TamaTk:
         self.display_pet()
 
     def delete_pet(self, name, sure=False):
+        '''Deletes directory with pet name if sure, else creates button
+        asking if sure
+        '''
         if sure:
             folder = 'saves/' + name
             shutil.rmtree(folder)
@@ -108,10 +126,11 @@ class TamaTk:
             self.welcome_screen()
             return
 
+        # First time function is called, creates button
         self.destroy_widgets()
         message = 'Are you sure you want to PERMANENTLY delete %s?' % name
         lab = tk.Label(self.master, text=message)
-        y = tk.Button(self.master, text='Yes, I\m sure.',
+        y = tk.Button(self.master, text='Yes, I\'m sure.',
                         command=lambda: self.delete_pet(name, sure=True))
         n = tk.Button(self.master, text='Cancel', command=self.welcome_screen)
         lab.grid(row=0, columnspan=2)
@@ -119,35 +138,44 @@ class TamaTk:
         y.grid(row=1, column=1)
         self.active_widgets = [lab, y, n]
 
-
+    def display_pet(self):
+        '''Main function that displays the pet
+        '''
+        self.destroy_widgets()
+        self.master.title(self.pet.name)
+        self.return_to_welcome(setup=True)
+        # self.print_stats()
+        self.show_image()
+        if not self.pet.neglect:
+            self.hh_bars(set_up=True)
+            self.display_seconds(set_up=True)
+            self.display_menu_buttons()
+            if not self.thread:
+                self.thread = Thread(target=self.update_GUI)
+                self.thread.start()
+        else:
+            self.display_neglect()
+        self.center_window()
 
     def return_to_welcome(self, setup=False):
+        '''Creates button returns to main menu
+        '''
         if setup:
-            but = tk.Button(self.master, text='Return to Welcome Screen',
+            but = tk.Button(self.master, text='Main Menu',
                         command=self.return_to_welcome)
-            but.grid(columnspan=2)
+            but.grid(columnspan=6)
             self.active_widgets.append(but)
         else:
-            self.pet = None
+            self.pet = self.thread = None
             self.welcome_screen()
 
     def print_stats(self):
+        '''Creates a button to be used during debugging
+        '''
         but = tk.Button(self.master, text='show stats',
                                      command=self.pet.print_stats)
         but.grid(row=0, column=5)
         self.active_widgets.append(but)
-
-    def display_pet(self):
-        self.destroy_widgets()
-        self.master.title(self.pet.name)
-        self.return_to_welcome(setup=True)
-        self.print_stats()
-        self.show_image()
-        self.hh_bars(set_up=True)
-        self.display_seconds(set_up=True)
-        self.display_menu_buttons()
-        self.thread = Thread(target=self.update_GUI)
-        self.thread.start()
 
     def show_image(self, ROW=1, COLUMN=0, cSpan=6):
         '''Adds a label containing PNG of animal
@@ -168,7 +196,6 @@ class TamaTk:
         elif 40 <= x < 60:  return 'medium purple'
         elif 60 <= x < 80:  return 'cyan3'
         elif 80 <= x:       return 'green3'
-
 
     def hh_bars(self, set_up=False):
         '''Creates labels containing health and happiness values
@@ -209,14 +236,16 @@ class TamaTk:
         '''
         for i, string in enumerate(sorted(self.pet.time_strings.items())):
             string = string[0]
+            time_strings = self.pet.time_strings
             if set_up:
-                self.pet.time_strings[string] = tk.StringVar()
-                self.pet.time_strings[string].set(self.pet.seconds_left(string))
-                label = tk.Label(self.master, textvariable=self.pet.time_strings[string])
+                time_strings[string] = tk.StringVar()
+                time_strings[string].set(self.pet.seconds_left(string))
+                label = tk.Label(self.master,
+                                 textvariable=time_strings[string])
                 label.grid(row=3, column=i)
                 self.active_widgets.append(label)
             else:
-                self.pet.time_strings[string].set(self.pet.seconds_left(string))
+                time_strings[string].set(self.pet.seconds_left(string))
 
     def display_menu_buttons(self):
         '''Menubars corrisponding to types of interactions
@@ -231,7 +260,23 @@ class TamaTk:
                         command=lambda int=int: self.interact_with_pet(int))
             self.active_widgets.append(m_button)
 
+    def display_neglect(self):
+        '''Informs user if pet has died or run away
+        '''
+        pet = self.pet
+        message = self.pet.neglect
+        if pet.neglect == HEALTH:
+            message = '%s has died because of your neglect.' % pet.name
+        elif pet.neglect == HAPPINESS:
+            message = '%s has become too unhappy and has run away.' % pet.name
+        lab = tk.Label(self.master, text=message)
+        lab.grid(columnspan=5)
+        self.active_widgets.append(lab)
+
     def interact_with_pet(self, interaction):
+        '''Activated by menubutton.  If ready, continues to
+        'display_interaction' function, else button informs user
+        '''
         i_type = get_interaction_type(interaction)
         is_ready = self.pet.seconds_left(i_type)
         if is_ready == READY:
@@ -244,6 +289,9 @@ class TamaTk:
             self.active_widgets.append(but)
 
     def display_interaction(self, interaction):
+        '''Displays a bar to indicate the progress of the interaction
+        includes a button to cancel the interaction
+        '''
         self.destroy_widgets()
         self.show_image()
 
@@ -260,9 +308,12 @@ class TamaTk:
                                         fill='medium purple', tags='bar')
         self.active_widgets.append(self.interaction_bar)
         self.current_interaction = [interaction, 0]
+        self.center_window()
 
     def stop_interaction(self):
-        self.pet.change_stats('Stop')
+        '''Activated if user presses 'Stop' button during interaction
+        '''
+        self.pet.change_stats('Stop') # Removes 2 points from pet's happiness
         self.current_interaction = None
         self.display_pet()
 
@@ -286,11 +337,14 @@ class TamaTk:
         self.current_interaction[1] += 1
 
     def update_GUI(self):
+        '''Second thread will either update the interaction screen,
+        the seconds on the main display, or finish if no pet
+        '''
         if self.current_interaction:
             self.update_interaction()
             self.master.after(1000, self.update_GUI)
+            # print(self.current_interaction)#, current_thread())
         elif self.pet:
             self.pet.update_seconds()
             self.display_seconds()
             self.master.after(1000, self.update_GUI)
-
