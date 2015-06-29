@@ -1,50 +1,54 @@
+"""Tamagotchi Class : Main class that defines the pet"""
+
 from interactions import *
 from constants import *
 import pickle as pkl
 import os
 import time
-import pdb
+
 
 class Tamagotchi:
+    """Main class that defines the Tamagotchi pet.  Handles all
+     stats and saving stats.
+    """
     def __init__(self):
-        self.name = None
-        self.animal = None
-        self.folder = None
+        self.name = ''
+        self.animal = ''
+        self.folder = ''
         self.neglect = False
-
         self.hh = {
-            HEALTH:None,
-            HAPPINESS:None,
+            HEALTH: 0,
+            HAPPINESS: 0,
         }
-
         self.times = {
-            EAT:None,
-            DRINK:None,
-            SLEEP:None,
-            LOVE:None,
-            PLAY:None,
+            EAT: 0,
+            DRINK: 0,
+            SLEEP: 0,
+            LOVE: 0,
+            PLAY: 0,
         }
         self.time_strings = self.times.copy()
 
     def assign_folder(self):
+        """Sets folder to be 'saves/____' """
         self.folder = 'saves/' + self.name
 
     def animal_type(self, animal=None):
-        '''Assigns animal type to pet.  Loads if pickle exists, else saves
+        """Assigns animal type to pet.  Loads if pickle exists, else saves
         pickle file
-        '''
-        file_path = self.folder + '/animal_type.pkl'
-        if os.path.isfile(file_path):
-            self.animal = pkl.load(open(file_path, 'rb'))
+        """
+        file = self.folder + '/animal_type.pkl'
+        if os.path.isfile(file):
+            self.animal = pkl.load(open(file, 'rb'))
         elif animal:
-            pkl.dump(animal, open(file_path, 'wb'))
+            pkl.dump(animal, open(file, 'wb'))
             self.animal = animal
 
     def pkl_stats(self, save=False, load=False):
-        '''Pickles stats for Health, Happiness, and last time for each
+        """Pickles stats for Health, Happiness, and last time for each
         interaction with pet.  Will create new stats if .pkl files do
         not exist.
-        '''
+        """
         for stat_type in HH, TIMES:
             if stat_type == HH:
                 stat_group = self.hh
@@ -63,25 +67,26 @@ class Tamagotchi:
 
             for stat in stat_group:
                 value = stat_group[stat]
-                path = '%s/%s.pkl' % (folder, stat.lower())
+                file = '%s/%s.pkl' % (folder, stat.lower())
                 if load:
-                    stat_group[stat] = pkl.load(open(path, 'rb'))
+                    stat_group[stat] = pkl.load(open(file, 'rb'))
                 if save:
                     if not value:
                         if stat_type == HH:
                             stat_group[stat] = 50
                         elif stat_type == TIMES:
                             stat_group[stat] = int(time.time())
-                    pkl.dump(value, open(path, 'wb'))
+                    pkl.dump(value, open(file, 'wb'))
 
     def update_seconds(self):
+        """Updates all seconds in self.times"""
         for int_type in self.times:
             self.seconds_left(int_type)
 
     def seconds_left(self, int_type):
-        '''Called with 'update_seconds' function and returns string
+        """Called with 'update_seconds' function and returns string
         to be used in 'TamaTk.display_seconds' function
-        '''
+        """
         now = int(time.time())
         last = self.times[int_type]
         left = last - now
@@ -91,8 +96,7 @@ class Tamagotchi:
         return str(left)
 
     def change_stats(self, interaction):
-        '''Reads interaction and alters pet's stats
-        '''
+        """Reads interaction and alters pet's stats"""
         int_object = INTERACTIONS[interaction]
         self.hh[HAPPINESS] += int_object.happiness
         self.hh[HEALTH] += int_object.health
@@ -106,8 +110,7 @@ class Tamagotchi:
         self.pkl_stats(save=True)
 
     def print_stats(self):
-        '''Used for debugging only
-        '''
+        """Prints pet Stats. Used for debugging only"""
         now = int(time.time())
         print('Now: %s' % now)
         print('Health: %s' % (self.hh[HEALTH]))
@@ -120,14 +123,14 @@ class Tamagotchi:
         print('<-------------->')
 
     def calculate_neglect(self):
-        '''Alters pet health/happiness based on length of time since
+        """Alters pet health/happiness based on length of time since
         last interaction
-        '''
-        path = self.folder + '/neglect.pkl'
+        """
+        file = self.folder + '/neglect.pkl'
         now = int(time.time())
-        if os.path.exists(path):
-            last = pkl.load(open(path, 'rb'))
-            if now - last > 1 * DAYS: # Gives user 1 day to care for pet
+        if os.path.exists(file):
+            last = pkl.load(open(file, 'rb'))
+            if now - last > 1 * DAYS:  # Gives user 1 day to care for pet
                 for its in INTERACTION_TYPES:
                     i_type = INTERACTION_TYPES[its]
                     t = now - self.times[its]
@@ -135,14 +138,13 @@ class Tamagotchi:
                         self.hh[HEALTH] -= i_type.neglect_health
                         self.hh[HAPPINESS] -= i_type.neglect_happiness
                         t -= 1 * DAYS
-                        pkl.dump(now, open(path, 'wb'))
+                        pkl.dump(now, open(file, 'wb'))
         else:
-            pkl.dump(now, open(path, 'wb'))
+            pkl.dump(now, open(file, 'wb'))
         self.is_neglected()
 
     def is_neglected(self):
-        '''Called after calculate_neglect function
-        '''
+        """Sets self.neglect to 'health' or 'happiness' if neglected"""
         if self.hh[HEALTH] < 0:
             self.neglect = HEALTH
             return
@@ -150,7 +152,7 @@ class Tamagotchi:
             self.neglect = HAPPINESS
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     frank = Tamagotchi()
     frank.name = "Frank/"
     frank.assign_folder()
