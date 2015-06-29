@@ -4,7 +4,8 @@ from constants import *
 from interactions import *
 from threading import Thread, current_thread
 import tkinter as tk
-from PIL import Image, ImageTk
+import PIL.Image as Image
+import PIL.ImageTk as ImageTk
 from pet import Tamagotchi
 import os
 import shutil
@@ -97,13 +98,16 @@ class TamaTk:
         submit = tk.Button(self.master, text='Create New Pet', command=lambda:
                            self.make_pet(entry.get(), l_box.curselection()[0]))
         self.active_widgets = [load, name, entry,
-                               choice, l_box, submit]
+                               choice, l_box, submit, scroll]
         for widget in self.active_widgets:
-            widget.grid()
+            if 'Listbox' in widget.__doc__:
+                widget.grid()
+            else:
+                widget.grid(columnspan=2)
         for animal in os.listdir('animals'):
             if animal[-4:] == '.png':
                 l_box.insert(tk.END, animal[:-4])
-        scroll.grid(row=4, column=1,sticky=tk.N+tk.S)
+        scroll.grid(row=4, column=1, sticky=tk.N+tk.S)
         self.center_window()
 
     def make_pet(self, name, animal):
@@ -115,10 +119,10 @@ class TamaTk:
         if name in os.listdir('saves'):
             x = tk.Button(text='Name Already Exists',
                           command=lambda: x.destroy())
-            x.pack()
+            x.grid()
             self.active_widgets.append(x)
         else:
-            animal = os.listdir('animals')[animal]
+            animal = os.listdir('animals')[animal+1]
             self.select_pet(name, animal)
 
     def select_pet(self, name, animal=None):
