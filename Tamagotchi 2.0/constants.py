@@ -17,7 +17,7 @@ PET_WINDOW = 1
 INT_WINDOW = 2
 
 if __name__ == '__main__':
-    print('\n%s:\n' %__doc__)
+    print('\n%s:\n' % __doc__)
     C = globals().copy()
     for name in C:
         if name[0] != '_':

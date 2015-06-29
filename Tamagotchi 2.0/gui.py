@@ -17,10 +17,9 @@ class TamaTk:
     def __init__(self, master):
         self.master = master
         self.center_window()
-        self.master.title('Tamagotchi')
+        self.master.title('Animal Master')
         self.active_widgets = []
         self.saves = []
-        self.find_saves()
         self.pet = None
         self.thread = None
         self.current_interaction = None
@@ -41,6 +40,7 @@ class TamaTk:
 
     def find_saves(self):
         """Loads all folders in the 'saves' directory"""
+        self.saves = []
         if os.path.isdir('saves'):
             for folder in os.listdir('saves'):
                 if os.path.isdir('saves/' + folder):
@@ -55,10 +55,16 @@ class TamaTk:
         """Player has option between loading a pet or making a new one
         """
         self.destroy_widgets()
+        self.find_saves()
+        if not self.saves:
+            self.new_pet_window()
+            return
 
         new = tk.Button(self.master, text='Make New Pet',
                         command=self.new_pet_window)
-        old = tk.Listbox(self.master)
+        scroll = tk.Scrollbar(self.master, orient=tk.VERTICAL)
+        old = tk.Listbox(self.master, yscrollcommand=scroll.set)
+        scroll.config(command=old.yview)
         load = tk.Button(self.master, text='Load Pet', command=lambda:
                          self.select_pet(old.get(old.curselection()[0])))
         dlt = tk.Button(self.master, text='Delete Pet', command=lambda:
@@ -66,11 +72,12 @@ class TamaTk:
         new.grid(row=0, column=0)
         load.grid(row=1, column=0)
         dlt.grid(row=2, column=0)
+        scroll.grid(row=0, column=2, sticky=tk.N+tk.S, rowspan=3)
         old.grid(row=0, column=1, rowspan=3)
         for name in self.saves:
             old.insert(tk.END, name)
         self.center_window()
-        self.active_widgets = [new, load, old, dlt]
+        self.active_widgets = [new, load, old, dlt, scroll]
 
     def new_pet_window(self):
         """Player creates a new pet, window has an Entry box and List
@@ -81,7 +88,9 @@ class TamaTk:
                          command=self.welcome_screen)
         choice = tk.Label(self.master, text='Choose an Animal')
         name = tk.Label(self.master, text='Choose a Name')
-        l_box = tk.Listbox(self.master)
+        scroll = tk.Scrollbar(self.master, orient=tk.VERTICAL)
+        l_box = tk.Listbox(self.master, yscrollcommand=scroll.set)
+        scroll.config(command=l_box.yview)
         alpha = self.master.register(lambda x: x.isalpha())
         entry = tk.Entry(self.master, validate='key',
                          validatecommand=(alpha, '%S'))
@@ -90,9 +99,11 @@ class TamaTk:
         self.active_widgets = [load, name, entry,
                                choice, l_box, submit]
         for widget in self.active_widgets:
-            widget.pack()
+            widget.grid()
         for animal in os.listdir('animals'):
-            l_box.insert(tk.END, animal[:-4])
+            if animal[-4:] == '.png':
+                l_box.insert(tk.END, animal[:-4])
+        scroll.grid(row=4, column=1,sticky=tk.N+tk.S)
         self.center_window()
 
     def make_pet(self, name, animal):
